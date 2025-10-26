@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import Cart from "@/components/Cart";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -138,6 +139,9 @@ const Header = () => {
               <span className="hidden lg:inline">Place New Order</span>
               <span className="lg:hidden">Order</span>
             </Button>
+            
+            {/* Cart */}
+            <Cart />
             
             {/* Profile Dropdown */}
             <DropdownMenu>

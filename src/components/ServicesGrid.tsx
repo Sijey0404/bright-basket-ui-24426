@@ -1,6 +1,8 @@
 import { Shirt, BedDouble, Sparkles, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 // Import wash & fold images
 import jacketImg from "@/assets/wash-fold/jacket.jpg";
@@ -134,9 +136,26 @@ const services: Service[] = [
 
 const ServicesGrid = () => {
   const [expandedService, setExpandedService] = useState<number | null>(null);
+  const { addItem } = useCart();
+  const { toast } = useToast();
 
   const handleServiceClick = (serviceId: number) => {
     setExpandedService(expandedService === serviceId ? null : serviceId);
+  };
+
+  const handleItemClick = (item: ServiceItem, serviceName: string) => {
+    const priceValue = parseFloat(item.price.replace('$', ''));
+    addItem({
+      id: item.name,
+      name: item.name,
+      price: priceValue,
+      image: item.image,
+      service: serviceName,
+    });
+    toast({
+      title: "Added to cart",
+      description: `${item.name} has been added to your cart.`,
+    });
   };
 
   return (
@@ -181,7 +200,11 @@ const ServicesGrid = () => {
                 <h4 className="text-lg font-semibold text-foreground mb-4">Available Items</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
                   {service.items.map((item, index) => (
-                    <Card key={index} className="group hover:shadow-md transition-all duration-300 hover:scale-105">
+                    <Card 
+                      key={index} 
+                      className="group hover:shadow-md transition-all duration-300 hover:scale-105 cursor-pointer"
+                      onClick={() => handleItemClick(item, service.name)}
+                    >
                       <CardContent className="p-3 flex flex-col items-center gap-2">
                         <div className="w-full aspect-square rounded-md overflow-hidden bg-muted">
                           <img 
