@@ -6,51 +6,40 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import Cart from "@/components/Cart";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
+    const {
+      error
+    } = await supabase.auth.signOut();
     if (error) {
       toast({
         title: "Error",
         description: "Failed to logout. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } else {
       toast({
         title: "Logged out",
-        description: "You've been successfully logged out.",
+        description: "You've been successfully logged out."
       });
       navigate("/auth");
     }
   };
-
-  return (
-    <header className="bg-card border-b border-border shadow-sm sticky top-0 z-50">
+  return <header className="bg-card border-b border-border shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 md:gap-3">
             <img src={blobLogo} alt="Blob Laundry Shop" className="h-10 w-10 md:h-12 md:w-12 object-contain" />
             <div className="flex flex-col">
-              <h1 className="text-lg md:text-xl font-bold text-foreground">Blob Laundry Shop</h1>
+              
               <span className="text-xs md:text-sm text-muted-foreground font-medium">LAUNDRY SHOP</span>
             </div>
           </div>
@@ -88,45 +77,20 @@ const Header = () => {
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-4 mt-8">
-                  <Button 
-                    variant="ghost" 
-                    size="lg" 
-                    className="justify-start font-medium text-base"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                  <Button variant="ghost" size="lg" className="justify-start font-medium text-base" onClick={() => setMobileMenuOpen(false)}>
                     Home
                   </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="lg" 
-                    className="justify-start font-medium text-base"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                  <Button variant="ghost" size="lg" className="justify-start font-medium text-base" onClick={() => setMobileMenuOpen(false)}>
                     Services
                   </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="lg" 
-                    className="justify-start font-medium text-base"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                  <Button variant="ghost" size="lg" className="justify-start font-medium text-base" onClick={() => setMobileMenuOpen(false)}>
                     Pricing
                   </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="lg" 
-                    className="justify-start font-medium text-base"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                  <Button variant="ghost" size="lg" className="justify-start font-medium text-base" onClick={() => setMobileMenuOpen(false)}>
                     FAQ
                   </Button>
                   <div className="border-t border-border pt-4 mt-4">
-                    <Button 
-                      variant="cta" 
-                      size="lg" 
-                      className="w-full gap-2"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
+                    <Button variant="cta" size="lg" className="w-full gap-2" onClick={() => setMobileMenuOpen(false)}>
                       <Plus className="h-4 w-4" />
                       Place New Order
                     </Button>
@@ -155,10 +119,7 @@ const Header = () => {
               <DropdownMenuContent align="end" className="w-48 bg-card z-50">
                 <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
                 <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
-                <DropdownMenuItem 
-                  className="text-destructive cursor-pointer"
-                  onClick={handleLogout}
-                >
+                <DropdownMenuItem className="text-destructive cursor-pointer" onClick={handleLogout}>
                   <LogOut className="h-4 w-4 mr-2" />
                   Logout
                 </DropdownMenuItem>
@@ -167,8 +128,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Header;
