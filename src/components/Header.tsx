@@ -1,4 +1,5 @@
 import { WashingMachine, User, Plus, Menu, LogOut } from "lucide-react";
+import blobLogo from "@/assets/blob-logo.png";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -47,10 +48,8 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 md:gap-3">
-            <div className="p-1.5 md:p-2 bg-primary/10 rounded-lg">
-              <WashingMachine className="h-6 w-6 md:h-7 md:w-7 text-primary" />
-            </div>
-            <h1 className="text-lg md:text-xl font-bold text-foreground">LAUNDRY HUB</h1>
+            <img src={blobLogo} alt="Blob Laundry Shop" className="h-10 w-10 md:h-12 md:w-12 object-contain" />
+            <h1 className="text-lg md:text-xl font-bold text-foreground">Blob Laundry Shop</h1>
           </div>
 
           {/* Center Navigation - Desktop Only */}
@@ -81,7 +80,7 @@ const Header = () => {
               <SheetContent side="left" className="w-[280px] sm:w-[350px]">
                 <SheetHeader>
                   <SheetTitle className="flex items-center gap-2">
-                    <WashingMachine className="h-6 w-6 text-primary" />
+                    <img src={blobLogo} alt="Blob Laundry Shop" className="h-6 w-6 object-contain" />
                     Menu
                   </SheetTitle>
                 </SheetHeader>
