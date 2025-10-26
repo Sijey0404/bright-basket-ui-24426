@@ -49,7 +49,10 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center gap-2 md:gap-3">
             <img src={blobLogo} alt="Blob Laundry Shop" className="h-10 w-10 md:h-12 md:w-12 object-contain" />
-            <h1 className="text-lg md:text-xl font-bold text-foreground">Blob Laundry Shop</h1>
+            <div className="flex flex-col">
+              <h1 className="text-lg md:text-xl font-bold text-foreground">Blob Laundry Shop</h1>
+              <span className="text-xs md:text-sm text-muted-foreground font-medium">LAUNDRY SHOP</span>
+            </div>
           </div>
 
           {/* Center Navigation - Desktop Only */}
